@@ -39,4 +39,4 @@ jobs:
        host: ${{ secrets.HOST_dns }}
        user: ubuntu
        key: ${{ secrets.EC2_SSH_KEY}}
-       
+  
