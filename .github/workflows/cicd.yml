@@ -13,11 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Replace with your generated token
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} # Replace with your SonarQube URL
+        with:
+          args: >
+            -Dsonar.projectKey=test
+            -Dsonar.sources=.
+            -Dsonar.host.url=https://sonarqube.chartably-development.com
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
